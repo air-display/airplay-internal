@@ -1,1 +1,43 @@
-<mxfile host="app.diagrams.net" modified="2021-04-21T12:07:08.557Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36 Edg/89.0.774.77" version="14.6.3" etag="6ECh0RLYl6Z4nhkLQ937" type="github"><diagram id="LSE1dWnnLpVkwYzT6lio">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-04-24T00:47:49.460Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36 Edg/89.0.774.77" etag="jlnt7wdeikna6wVCe1W4" version="14.6.3" type="github">
+  <diagram id="LSE1dWnnLpVkwYzT6lio" name="Page-1">
+    <mxGraphModel dx="1422" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="5K2OGfcVMbidN2IvRVLD-20" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;discovery_service&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;height: 2px&quot;&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="480" width="210" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="5K2OGfcVMbidN2IvRVLD-21" value="_airplay._tcp" style="html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="520" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5K2OGfcVMbidN2IvRVLD-22" value="_raop._tcp" style="html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="580" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5K2OGfcVMbidN2IvRVLD-23" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;airplay_service&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;height: 2px&quot;&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="140" width="210" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="5K2OGfcVMbidN2IvRVLD-24" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;mirror_stream_service&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;height: 2px&quot;&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="350" width="210" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="5K2OGfcVMbidN2IvRVLD-25" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;audio_stream_service&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;height: 2px&quot;&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="560" width="210" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="5K2OGfcVMbidN2IvRVLD-26" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;timing_sync_service&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;height: 2px&quot;&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" vertex="1" parent="1">
+          <mxGeometry x="830" y="350" width="210" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="5K2OGfcVMbidN2IvRVLD-27" value="RTSP" style="html=1;" vertex="1" parent="1">
+          <mxGeometry x="610" y="180" width="190" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="5K2OGfcVMbidN2IvRVLD-28" value="HTTP" style="html=1;" vertex="1" parent="1">
+          <mxGeometry x="610" y="240" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5K2OGfcVMbidN2IvRVLD-30" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;meida&lt;/b&gt;&lt;b&gt;_http_service&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;height: 2px&quot;&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="770" width="210" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="5K2OGfcVMbidN2IvRVLD-31" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;meida&lt;/b&gt;&lt;b&gt;_data_store&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div style=&quot;height: 2px&quot;&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" vertex="1" parent="1">
+          <mxGeometry x="870" y="770" width="210" height="180" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
