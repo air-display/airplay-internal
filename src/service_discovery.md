@@ -11,6 +11,10 @@ When the AirPlay server starts, it will perform the following steps to establish
 <em>Startup Flow</em>
 </center>
 
+> **Remember that we said do not create HTTP and RTSP servers separately? Here I describe the two services separately only to make things clear to the reader. We should never implement the two services separately. The PORT_A and PORT_B is the same port in a real world implementation.** 
+
+>**<span style="color:red">Although they are the same service we still need to and must publish them separately. In one word, publish two services with only one real server.**</span> 
+
 The senders can only get access to the primary services (airplay and raop) through the discovery services. AirPlay server uses mDNS protocol to publish services in the local network so that the senders can discover it without any extra configuration. mDNS is also known as one of [Zero-configuration networking](https://en.wikipedia.org/wiki/Zero-configuration_networking) technologies. For more detailed information about mDNS protocol please refer to the [RFC 6762](https://tools.ietf.org/html/rfc6762) and other more documents provided by search engine. Here in this document we only talk about:
 
 1. What service should be published for AirPlay servers/receiver
