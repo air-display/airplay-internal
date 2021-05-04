@@ -1,4 +1,4 @@
-Aiplay Protocol Details
+Aiplay Stack Details
 
 1. [Overall Architecture](./overall_architecture.md)
 

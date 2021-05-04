@@ -1,6 +1,10 @@
 # Pairing Process
 
-[![Pairing Interaction](images/pairing-interaction.png)](images/pairing-interaction.png)
+<center>
+<a href="images/pairing-interaction.png"><img src="images/pairing-interaction.png" alt></a>
+<br/>
+<em>Pairing Process Interaction Flow</em>
+</center>
 
 ```
 AP Server is starting....
@@ -9,7 +13,7 @@ AP Server is starting....
 [DEBUG]AP service running on 57619
 [DEBUG]Session (000002BE85EA6680) is waiting
 [DEBUG]Media service running on 57620
-AP Server started....
+AP Server start
 [DEBUG]Session (000002BE85E99AE0) accepted and started
 [DEBUG]ap_airplay_connection (000002BE85EB0890) is being created
 [DEBUG]Session (000002BE85EB0890) is waiting

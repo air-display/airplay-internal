@@ -1,6 +1,10 @@
 # Media Cast Service
 
-[![Mirroring Service interraction](images/media-cast-service.png)](images/media-cast-service.png)
+<center>
+<a href="images/media-cast-service.png"><img src="images/media-cast-service.png" alt></a>
+<br/>
+<em>Media Cast Service Interaction Flow</em>
+</center>
 
 ```
 AP Server is starting....

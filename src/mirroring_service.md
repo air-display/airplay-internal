@@ -1,6 +1,10 @@
 # Mirroring Service
 
-[![Mirroring Service interraction](images/mirroring-service.png)](images/mirroring-service.png)
+<center>
+<a href="images/mirroring-service.png"><img src="images/mirroring-service.png" alt></a>
+<br/>
+<em>Mirroring Service Interaction Flow</em>
+</center>
 
 ```
 AP Server is starting....
