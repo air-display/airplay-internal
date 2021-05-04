@@ -305,3 +305,10 @@ on_acquire_playback_info:
 [DEBUG]ap_airplay_connection (000002BE85ECD6C0) is being destroyed
 
 ```
+
+original connection: c -> s
+reverse -> insert current connection to event connection manager 
+
+new connection: c -> s
+post play -> get reversed connection -> send fcup request   recored primary uri
+post action -> unhandledURLResponse -> process media data and store   return primary uri
