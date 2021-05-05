@@ -23,7 +23,7 @@ Once the sender discovered the AirPlay server, it can get access tot he AirPlay 
 
    bplist00...Yqualifier..ZtxtAirPlay..................................."
    ```
-   You may note that this is a request with GET method, but it has body data. 
+   You may note that this is a request with GET method, but it has body data. Because it is not HTTP but RTSP protocol data.
 
    For this request, we can ignore data the body data and response with a binary property list data including required information. For example, reply this request with the following response.
    Response:
@@ -113,7 +113,7 @@ Once the sender discovered the AirPlay server, it can get access tot he AirPlay 
    FPLY............
    ```
 
-   The second sender request starts the real fairplay pairing process. In this request body we can get the
+   The second sender request starts the real fairplay pairing process. In this request body it is a FPLY message. All FPLY messages has the common structure:
 
    Response:
    ```
