@@ -3,7 +3,7 @@ authors = ["Sheen"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Airplay Stack And Implementation"
+title = "AirPlay Internal And Implementation"
 
 [output.html]
 default-theme = "light"

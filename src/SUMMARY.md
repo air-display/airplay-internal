@@ -1,4 +1,4 @@
-Aiplay Stack Details
+AirPlay Internal And Implementation
 
 1. [Overall Architecture](./overall_architecture.md)
 

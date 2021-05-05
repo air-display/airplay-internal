@@ -1,0 +1,711 @@
+AP Server is starting....
+[DEBUG]ap_airplay_connection (0000019131A98520) is being created
+[DEBUG]Session (0000019131A98520) is waiting
+[DEBUG]AP service running on 50118
+[DEBUG]Session (0000019131AA7750) is waiting
+[DEBUG]Media service running on 50119
+AP Server started....
+[DEBUG]Session (0000019131A98520) accepted and started
+ [DEBUG]ap_airplay_connection (0000019131AB1F80) is being created
+[DEBUG]Session (0000019131AB1F80) is waiting
+[DEBUG][1723115078944]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request: GET /info RTSP/1.0
+    Header:
+        Active-Remote: 354444643
+        CSeq: 0
+        Content-Length: 70
+        Content-Type: application/x-apple-binary-plist
+        DACP-ID: 7136391BB370A579
+        User-Agent: AirPlay/425.1
+        X-Apple-ProtocolVersion: 1
+    Body:bplist00...Yqualifier..ZtxtAirPlay..................................."
+[DEBUG][1723115078944]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request: POST /fp-setup RTSP/1.0
+    Header:
+        Active-Remote: 354444643
+        CSeq: 1
+        Content-Length: 16
+        Content-Type: application/octet-stream
+        DACP-ID: 7136391BB370A579
+        User-Agent: AirPlay/425.1
+        X-Apple-ET: 32
+    Body:FPLY............
+[DEBUG][1723115078944]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request: POST /fp-setup RTSP/1.0
+    Header:
+        Active-Remote: 354444643
+        CSeq: 2
+        Content-Length: 164
+        Content-Type: application/octet-stream
+        DACP-ID: 7136391BB370A579
+        User-Agent: AirPlay/425.1
+        X-Apple-ET: 32
+    Body:FPLY.............qyn......s.].3}.PS.........v..a&&...Eb..K.k+V.....I..........;.I..omR...._Q.~.k<....nz6.' 2.....I..f{.W...........e.y.2.dFR....xR4s..r.N..'...d.dB.
+[DEBUG][1723115078944]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request: SETUP rtsp://192.168.31.82/5259802854977588516 RTSP/1.0
+    Header:
+        Active-Remote: 354444643
+        CSeq: 3
+        Content-Length: 535
+        Content-Type: application/x-apple-binary-plist
+        DACP-ID: 7136391BB370A579
+        User-Agent: AirPlay/425.1
+    Body:bplist00.................................RetSeiv^timingProtocol[sessionUUIDVosName^osBuildVersion]sourceVersionZtimingPort_..isScreenMirroringSessionYosVersionTekeyXdeviceIDUmodelTnameZmacAddress. O..0......FTRM.H.R^SNTP_.$48FE92D4-3786-4D24-8270-752ACCCF8A47XMac OS XV19H524U425.1....W10.15.7O.HFPLY.......<....%V.&..&k....}..........n.t....A.Z.8......f....Q....]iuh._..88:66:5A:15:D7:E1^MacBookPro16,1_..SHEENTIAN-MBP00_..88:66:5A:15:D7:E1...).,.0.?.K.R.a.o.z.................................%.p......................................
+###################on_mirror_session_begin: 4205608363346199840
+[DEBUG][1723115078944]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request: GET /info RTSP/1.0
+    Header:
+        Active-Remote: 354444643
+        CSeq: 4
+        DACP-ID: 7136391BB370A579
+        User-Agent: AirPlay/425.1
+        X-Apple-ProtocolVersion: 1
+    Body:<EMPTY>
+[DEBUG][1723115078944]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request: GET_PARAMETER rtsp://192.168.31.82/5259802854977588516 RTSP/1.0
+    Header:
+        Active-Remote: 354444643
+        CSeq: 5
+        Content-Length: 8
+        Content-Type: text/parameters
+        DACP-ID: 7136391BB370A579
+        User-Agent: AirPlay/425.1
+    Body:volume..
+[DEBUG][1723115078944]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request: RECORD rtsp://192.168.31.82/5259802854977588516 RTSP/1.0
+    Header:
+        Active-Remote: 354444643
+        CSeq: 6
+        DACP-ID: 7136391BB370A579
+        User-Agent: AirPlay/425.1
+    Body:<EMPTY>
+[DEBUG]Timing query packet sent successfully
+[DEBUG]Timing reply packet received successfully
+[DEBUG][1723115078944]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request: SET_PARAMETER rtsp://192.168.31.82/5259802854977588516 RTSP/1.0
+    Header:
+        Active-Remote: 354444643
+        CSeq: 7
+        Content-Length: 20
+        Content-Type: text/parameters
+        DACP-ID: 7136391BB370A579
+        User-Agent: AirPlay/425.1
+    Body:volume: -20.000000..
+on_audio_set_volume: 33.3333, value: -20
+[DEBUG][1723115078944]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request: SETUP rtsp://192.168.31.82/5259802854977588516 RTSP/1.0
+    Header:
+        Active-Remote: 354444643
+        CSeq: 8
+        Content-Length: 188
+        Content-Type: application/x-apple-binary-plist
+        DACP-ID: 7136391BB370A579
+        User-Agent: AirPlay/425.1
+    Body:bplist00...Wstreams.........Ttype]timestampInfo_..streamConnectionID.n.........TnameUSubSu...UBePxT...UAfPxT...UBefEn...UEmEnc.j.^..MLr.....!/DFLOTZ]cfloux~................................
+on_mirror_stream_started
+[DEBUG]ap_video_stream_session(0000019131A9A7D0) is allocating.
+[DEBUG]Session (0000019131A9A7D0) is waiting
+[INFO]mirroring service video port: 50137
+[DEBUG][1723115078944]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request: SET_PARAMETER rtsp://192.168.31.82/5259802854977588516 RTSP/1.0
+    Header:
+        Active-Remote: 354444643
+        CSeq: 9
+        Content-Length: 20
+        Content-Type: text/parameters
+        DACP-ID: 7136391BB370A579
+        User-Agent: AirPlay/425.1
+    Body:volume: -20.000000..
+on_audio_set_volume: 33.3333, value: -20
+[DEBUG]Session (0000019131A9A7D0) accepted and started
+[DEBUG][1723115078944]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request: SETUP rtsp://192.168.31.82/5259802854977588516 RTSP/1.0
+    Header:
+        Active-Remote: 354444643
+        CSeq: 10
+        Content-Length: 265
+        Content-Type: application/x-apple-binary-plist
+        DACP-ID: 7136391BB370A579
+        User-Agent: AirPlay/425.1
+    Body:bplist00...Wstreams...........................[usingScreen[audioFormat_..supportsDynamicStreamID^redundantAudioYaudioModeRctSspfZlatencyMaxTtype[controlPortWisMediaZlatencyMin.........Wdefault.........`.........:F`oy|................................................
+[DEBUG]ap_audio_stream_service (0000019131AC6630) is being created
+[INFO]mirroring service audio data port: 65388, control port: 65389
+on_audio_stream_started: 3
+conf_len = 4
+  Concealment method was reverted to 1 !
+> stream info: channel = 2      sample_rate = 44100     frame_size = 480        aot = 39        bitrate = 0
+[DEBUG][1723115078944]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request: SET_PARAMETER rtsp://192.168.31.82/5259802854977588516 RTSP/1.0
+    Header:
+        Active-Remote: 354444643
+        CSeq: 11
+        Content-Length: 20
+        Content-Type: text/parameters
+        DACP-ID: 7136391BB370A579
+        User-Agent: AirPlay/425.1
+    Body:volume: -20.000000..
+on_audio_set_volume: 33.3333, value: -20
+[INFO]audio CONTROL SYNC packet
+[INFO]audio CONTROL SYNC packet
+[DEBUG][1723115078944]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request: FLUSH rtsp://192.168.31.82/5259802854977588516 RTSP/1.0
+    Header:
+        Active-Remote: 354444643
+        CSeq: 12
+        DACP-ID: 7136391BB370A579
+        RTP-Info: seq=58942;rtptime=1054215198
+        User-Agent: AirPlay/425.1
+    Body:<EMPTY>
+on_audio_stream_data: 314, timestamp: 1054209687
+on_audio_stream_data: 213, timestamp: 1054210167
+on_audio_stream_data: 200, timestamp: 1054210647
+on_audio_stream_data: 179, timestamp: 1054211127
+on_audio_stream_data: 182, timestamp: 1054211607
+on_audio_stream_data: 176, timestamp: 1054212087
+on_audio_stream_data: 173, timestamp: 1054212567
+on_audio_stream_data: 176, timestamp: 1054213047
+on_audio_stream_data: 179, timestamp: 1054213527
+on_audio_stream_data: 180, timestamp: 1054214007
+on_audio_stream_data: 173, timestamp: 1054214487
+on_audio_stream_data: 174, timestamp: 1054214967
+on_audio_stream_data: 179, timestamp: 1054215447
+on_audio_stream_data: 169, timestamp: 1054215927
+on_audio_stream_data: 178, timestamp: 1054216407
+on_audio_stream_data: 171, timestamp: 1054216887
+on_audio_stream_data: 171, timestamp: 1054217367
+on_audio_stream_data: 169, timestamp: 1054217847
+on_audio_stream_data: 172, timestamp: 1054218327
+on_audio_stream_data: 162, timestamp: 1054218807
+on_audio_stream_data: 156, timestamp: 1054219287
+on_audio_stream_data: 173, timestamp: 1054219767
+on_audio_stream_data: 157, timestamp: 1054220247
+on_audio_stream_data: 159, timestamp: 1054220727
+on_audio_stream_data: 160, timestamp: 1054221207
+on_audio_stream_data: 160, timestamp: 1054221687
+on_audio_stream_data: 164, timestamp: 1054222167
+on_audio_stream_data: 164, timestamp: 1054222647
+on_audio_stream_data: 170, timestamp: 1054223127
+on_audio_stream_data: 194, timestamp: 1054223607
+on_audio_stream_data: 172, timestamp: 1054224087
+on_audio_stream_data: 166, timestamp: 1054224567
+on_audio_stream_data: 165, timestamp: 1054225047
+on_audio_stream_data: 153, timestamp: 1054225527
+on_audio_stream_data: 174, timestamp: 1054226007
+on_audio_stream_data: 169, timestamp: 1054226487
+on_audio_stream_data: 152, timestamp: 1054226967
+on_audio_stream_data: 159, timestamp: 1054227447
+on_audio_stream_data: 177, timestamp: 1054227927
+on_audio_stream_data: 171, timestamp: 1054228407
+on_audio_stream_data: 177, timestamp: 1054228887
+on_audio_stream_data: 170, timestamp: 1054229367
+on_audio_stream_data: 169, timestamp: 1054229847
+on_audio_stream_data: 172, timestamp: 1054230327
+on_audio_stream_data: 171, timestamp: 1054230807
+on_audio_stream_data: 167, timestamp: 1054231287
+on_audio_stream_data: 165, timestamp: 1054231767
+on_audio_stream_data: 173, timestamp: 1054232247
+on_audio_stream_data: 158, timestamp: 1054232727
+on_audio_stream_data: 172, timestamp: 1054233207
+on_audio_stream_data: 177, timestamp: 1054233687
+on_audio_stream_data: 160, timestamp: 1054234167
+on_audio_stream_data: 173, timestamp: 1054234647
+on_audio_stream_data: 166, timestamp: 1054235127
+on_audio_stream_data: 165, timestamp: 1054235607
+on_audio_stream_data: 176, timestamp: 1054236087
+on_audio_stream_data: 183, timestamp: 1054236567
+on_audio_stream_data: 184, timestamp: 1054237047
+on_audio_stream_data: 181, timestamp: 1054237527
+on_audio_stream_data: 168, timestamp: 1054238007
+on_audio_stream_data: 164, timestamp: 1054238487
+on_audio_stream_data: 166, timestamp: 1054238967
+on_audio_stream_data: 165, timestamp: 1054239447
+on_audio_stream_data: 162, timestamp: 1054239927
+on_audio_stream_data: 179, timestamp: 1054240407
+on_audio_stream_data: 182, timestamp: 1054240887
+on_audio_stream_data: 179, timestamp: 1054241367
+on_audio_stream_data: 175, timestamp: 1054241847
+on_audio_stream_data: 191, timestamp: 1054242327
+on_audio_stream_data: 184, timestamp: 1054242807
+on_audio_stream_data: 174, timestamp: 1054243287
+on_audio_stream_data: 167, timestamp: 1054243767
+on_audio_stream_data: 166, timestamp: 1054244247
+on_audio_stream_data: 161, timestamp: 1054244727
+on_audio_stream_data: 166, timestamp: 1054245207
+on_audio_stream_data: 163, timestamp: 1054245687
+on_audio_stream_data: 173, timestamp: 1054246167
+on_audio_stream_data: 164, timestamp: 1054246647
+on_audio_stream_data: 164, timestamp: 1054247127
+on_audio_stream_data: 164, timestamp: 1054247607
+on_audio_stream_data: 175, timestamp: 1054248087
+on_audio_stream_data: 180, timestamp: 1054248567
+on_audio_stream_data: 178, timestamp: 1054249047
+on_audio_stream_data: 180, timestamp: 1054249527
+on_mirror_stream_heartbeat
+on_audio_stream_data: 179, timestamp: 1054250007
+on_audio_stream_data: 171, timestamp: 1054250487
+on_audio_stream_data: 173, timestamp: 1054250967
+on_audio_stream_data: 174, timestamp: 1054251447
+on_audio_stream_data: 173, timestamp: 1054251927
+on_audio_stream_data: 174, timestamp: 1054252407
+[INFO]audio CONTROL SYNC packet
+on_audio_stream_data: 174, timestamp: 1054252887
+on_audio_stream_data: 176, timestamp: 1054253367
+on_audio_stream_data: 179, timestamp: 1054253847
+on_audio_stream_data: 178, timestamp: 1054254327
+on_audio_stream_data: 179, timestamp: 1054254807
+on_audio_stream_data: 179, timestamp: 1054255287
+on_audio_stream_data: 160, timestamp: 1054255767
+on_audio_stream_data: 156, timestamp: 1054256247
+on_audio_stream_data: 168, timestamp: 1054256727
+on_audio_stream_data: 164, timestamp: 1054257207
+on_audio_stream_data: 156, timestamp: 1054257687
+on_audio_stream_data: 195, timestamp: 1054258167
+on_audio_stream_data: 177, timestamp: 1054258647
+on_audio_stream_data: 171, timestamp: 1054259127
+on_audio_stream_data: 177, timestamp: 1054259607
+on_audio_stream_data: 183, timestamp: 1054260087
+on_audio_stream_data: 169, timestamp: 1054260567
+on_audio_stream_data: 176, timestamp: 1054261047
+on_audio_stream_data: 175, timestamp: 1054261527
+on_audio_stream_data: 179, timestamp: 1054262007
+on_audio_stream_data: 171, timestamp: 1054262487
+on_audio_stream_data: 161, timestamp: 1054262967
+on_audio_stream_data: 161, timestamp: 1054263447
+on_audio_stream_data: 176, timestamp: 1054263927
+on_audio_stream_data: 164, timestamp: 1054264407
+on_audio_stream_data: 168, timestamp: 1054264887
+on_audio_stream_data: 182, timestamp: 1054265367
+on_audio_stream_data: 181, timestamp: 1054265847
+on_audio_stream_data: 192, timestamp: 1054266327
+on_audio_stream_data: 181, timestamp: 1054266807
+on_audio_stream_data: 169, timestamp: 1054267287
+on_audio_stream_data: 176, timestamp: 1054267767
+on_audio_stream_data: 178, timestamp: 1054268247
+on_audio_stream_data: 172, timestamp: 1054268727
+on_audio_stream_data: 158, timestamp: 1054269207
+on_mirror_stream_codec:
+on_audio_stream_data: 172, timestamp: 1054269687
+on_mirror_stream_data payload_size: 1011, timestamp: 0
+on_audio_stream_data: 175, timestamp: 1054270167
+on_audio_stream_data: 162, timestamp: 1054270647
+on_audio_stream_data: 160, timestamp: 1054271127
+on_audio_stream_data: 197, timestamp: 1054271607
+on_audio_stream_data: 169, timestamp: 1054272087
+on_audio_stream_data: 176, timestamp: 1054272567
+on_audio_stream_data: 172, timestamp: 1054273047
+on_audio_stream_data: 168, timestamp: 1054273527
+on_audio_stream_data: 160, timestamp: 1054274007
+on_audio_stream_data: 171, timestamp: 1054274487
+on_audio_stream_data: 168, timestamp: 1054274967
+on_audio_stream_data: 176, timestamp: 1054275447
+on_audio_stream_data: 170, timestamp: 1054275927
+on_audio_stream_data: 185, timestamp: 1054276407
+on_audio_stream_data: 173, timestamp: 1054276887
+on_audio_stream_data: 184, timestamp: 1054277367
+on_audio_stream_data: 178, timestamp: 1054277847
+on_audio_stream_data: 178, timestamp: 1054278327
+on_audio_stream_data: 166, timestamp: 1054278807
+on_audio_stream_data: 179, timestamp: 1054279287
+on_audio_stream_data: 172, timestamp: 1054279767
+on_audio_stream_data: 163, timestamp: 1054280247
+on_audio_stream_data: 174, timestamp: 1054280727
+on_audio_stream_data: 174, timestamp: 1054281207
+on_audio_stream_data: 152, timestamp: 1054281687
+on_audio_stream_data: 155, timestamp: 1054282167
+on_audio_stream_data: 171, timestamp: 1054282647
+on_audio_stream_data: 166, timestamp: 1054283127
+on_audio_stream_data: 157, timestamp: 1054283607
+on_audio_stream_data: 156, timestamp: 1054284087
+on_audio_stream_data: 160, timestamp: 1054284567
+on_audio_stream_data: 174, timestamp: 1054285047
+on_audio_stream_data: 166, timestamp: 1054285527
+on_audio_stream_data: 170, timestamp: 1054286007
+on_audio_stream_data: 173, timestamp: 1054286487
+on_audio_stream_data: 175, timestamp: 1054286967
+on_audio_stream_data: 172, timestamp: 1054287447
+on_audio_stream_data: 179, timestamp: 1054287927
+on_mirror_stream_data payload_size: 72, timestamp: 286332671
+on_audio_stream_data: 170, timestamp: 1054288407
+on_mirror_stream_data payload_size: 105, timestamp: 429498246
+on_audio_stream_data: 175, timestamp: 1054288887
+on_audio_stream_data: 168, timestamp: 1054289367
+on_audio_stream_data: 164, timestamp: 1054289847
+on_audio_stream_data: 175, timestamp: 1054290327
+on_audio_stream_data: 170, timestamp: 1054290807
+on_audio_stream_data: 165, timestamp: 1054291287
+on_audio_stream_data: 169, timestamp: 1054291767
+on_audio_stream_data: 173, timestamp: 1054292247
+on_audio_stream_data: 164, timestamp: 1054292727
+on_audio_stream_data: 161, timestamp: 1054293207
+on_audio_stream_data: 158, timestamp: 1054293687
+on_mirror_stream_data payload_size: 393, timestamp: 572663821
+on_mirror_stream_heartbeat
+on_mirror_stream_data payload_size: 125, timestamp: 858998012
+on_audio_stream_data: 166, timestamp: 1054294167
+on_audio_stream_data: 170, timestamp: 1054294647
+on_audio_stream_data: 170, timestamp: 1054295127
+on_audio_stream_data: 163, timestamp: 1054295607
+on_audio_stream_data: 170, timestamp: 1054296087
+on_audio_stream_data: 169, timestamp: 1054296567
+on_mirror_stream_data payload_size: 694, timestamp: 1002163587
+on_audio_stream_data: 162, timestamp: 1054297047
+on_mirror_stream_data payload_size: 2356, timestamp: on_audio_stream_data: 166, timestamp: 1054297527
+1216913850
+[INFO]audio CONTROL SYNC packet
+on_audio_stream_data: 165, timestamp: 1054298007
+on_audio_stream_data: 163, timestamp: 1054298487
+on_audio_stream_data: 166, timestamp: 1054298967
+on_audio_stream_data: 162, timestamp: 1054299447
+on_audio_stream_data: 165, timestamp: 1054299927
+on_mirror_stream_data payload_size: 131572, timestamp: 1360080186
+on_audio_stream_data: 168, timestamp: 1054300407
+on_audio_stream_data: 166, timestamp: 1054300887
+on_mirror_stream_data payload_size: 26667, timestamp: 1503245761
+on_mirror_stream_data payload_size: 80274, timestamp: 1646412856
+on_audio_stream_data: 164, timestamp: 1054301367
+on_audio_stream_data: 160, timestamp: 1054301847
+on_audio_stream_data: 172, timestamp: 1054302327
+on_audio_stream_data: 166, timestamp: 1054302807
+on_audio_stream_data: 166, timestamp: 1054303287
+on_audio_stream_data: 165, timestamp: 1054303767
+on_audio_stream_data: 159, timestamp: 1054304247
+on_audio_stream_data: 171, timestamp: 1054304727
+on_audio_stream_data: 209, timestamp: 1054305207
+on_audio_stream_data: 179, timestamp: 1054305687
+on_mirror_stream_data payload_size: 92073, timestamp: 1861162359
+on_audio_stream_data: 181, timestamp: 1054306167
+on_audio_stream_data: 186, timestamp: 1054306647
+on_mirror_stream_data payload_size: 17924, timestamp: 2004327934
+on_audio_stream_data: 178, timestamp: on_mirror_stream_data payload_size: 5891, timestamp: 2147493510
+1054307127on_mirror_stream_data payload_size: 4402, timestamp: 2290659085
+
+on_audio_stream_data: 192, timestamp: 1054307607
+on_audio_stream_data: 183, timestamp: 1054308087
+on_audio_stream_data: 174, timestamp: 1054308567
+on_audio_stream_data: 193, timestamp: 1054309047
+on_audio_stream_data: 180, timestamp: 1054309527
+on_audio_stream_data: 180, timestamp: 1054310007
+on_audio_stream_data: 177, timestamp: 1054310487
+on_mirror_stream_data payload_size: 4290, timestamp: 2433824660
+on_audio_stream_data: 181, timestamp: 1054310967
+on_mirror_stream_data payload_size: 4287, timestamp: 2576990235
+on_audio_stream_data: 179on_mirror_stream_data payload_size: 4284, timestamp: 2720155810
+, timestamp: 1054311447
+on_mirror_stream_data payload_size: 4284, timestamp: 2863321385
+on_audio_stream_data: 176, timestamp: 1054311927
+on_audio_stream_data: 170, timestamp: 1054312407
+on_audio_stream_data: 172, timestamp: 1054312887
+on_audio_stream_data: 175, timestamp: 1054313367
+on_audio_stream_data: 167, timestamp: 1054313847
+on_audio_stream_data: 173, timestamp: 1054314327
+on_audio_stream_data: 177, timestamp: 1054314807
+on_audio_stream_data: 179, timestamp: 1054315287
+on_audio_stream_data: 172, timestamp: 1054315767
+on_audio_stream_data: 172, timestamp: 1054316247
+on_audio_stream_data: 176, timestamp: 1054316727
+on_mirror_stream_data payload_size: 4284, timestamp: 3006486960
+on_audio_stream_data: 177, timestamp: 1054317207
+on_audio_stream_data: 176, timestamp: 1054317687
+on_mirror_stream_data payload_size: 4284, timestamp: 3149652535
+on_audio_stream_data: 175, timestamp: 1054318167
+on_audio_stream_data: 324, timestamp: 1054318647
+on_audio_stream_data: 214, timestamp: 1054319127
+on_audio_stream_data: 207, timestamp: 1054319607
+on_mirror_stream_data payload_size: 4284, timestamp: 3292818110
+on_audio_stream_data: 201, timestamp: 1054320087
+on_audio_stream_data: 198, timestamp: 1054320567
+on_mirror_stream_data payload_size: 4284, timestamp: 3435983685
+on_audio_stream_data: 203, timestamp: 1054321047
+on_audio_stream_data: 199, timestamp: 1054321527
+on_audio_stream_data: 202, timestamp: 1054322007
+on_mirror_stream_data payload_size: 4284, timestamp: 3579149261
+on_audio_stream_data: 199, timestamp: 1054322487
+on_audio_stream_data: 183, timestamp: 1054322967
+on_audio_stream_data: 195, timestamp: 1054323447
+on_mirror_stream_data payload_size: 4284, timestamp: 3722314836
+on_audio_stream_data: 198, timestamp: 1054323927
+on_audio_stream_data: 197, timestamp: 1054324407
+on_mirror_stream_data payload_size: 4284, timestamp: 3865480411
+on_audio_stream_data: 188, timestamp: 1054324887
+on_audio_stream_data: 197, timestamp: 1054325367
+on_audio_stream_data: 184, timestamp: 1054325847
+on_audio_stream_data: 191, timestamp: 1054326327
+on_mirror_stream_data payload_size: 4284, timestamp: 4008645986
+on_audio_stream_data: 189, timestamp: 1054326807
+on_audio_stream_data: 186, timestamp: 1054327287
+on_audio_stream_data: 184, timestamp: 1054327767
+on_audio_stream_data: 194, timestamp: 1054328247
+on_audio_stream_data: 182, timestamp: 1054328727
+on_audio_stream_data: 179, timestamp: on_mirror_stream_data payload_size: 4284, timestamp: 4151811561
+1054329207
+on_mirror_stream_data payload_size: 4284, timestamp: 4294977136
+on_audio_stream_data: 188, timestamp: 1054329687
+on_mirror_stream_data payload_size: 4286, timestamp: 4438142711
+on_audio_stream_data: 182, timestamp: 1054330167
+on_audio_stream_data: 228, timestamp: 1054330647
+on_audio_stream_data: 183, timestamp: 1054331127
+on_audio_stream_data: 181, timestamp: 1054331607
+on_audio_stream_data: 206, timestamp: 1054332087
+on_audio_stream_data: 203, timestamp: 1054332567
+on_audio_stream_data: 192, timestamp: 1054333047
+on_audio_stream_data: 195, timestamp: 1054333527
+on_mirror_stream_data payload_size: 4286, timestamp: 4581308286
+on_audio_stream_data: 271, timestamp: 1054334007
+on_mirror_stream_data payload_size: 4284, timestamp: 4724473861
+on_audio_stream_data: 178on_mirror_stream_data payload_size: 4284, timestamp: 4867639436
+on_mirror_stream_heartbeat
+, timestamp: 1054334487
+on_mirror_stream_data payload_size: 4284on_audio_stream_data: 217, timestamp: 1054334967
+, timestamp: 5010805012
+on_audio_stream_data: 170, timestamp: 1054335447
+on_audio_stream_data: 177, timestamp: 1054335927
+on_audio_stream_data: 182, timestamp: 1054336407
+on_audio_stream_data: 183, timestamp: 1054336887
+on_audio_stream_data: 177, timestamp: 1054337367
+on_audio_stream_data: 177, timestamp: 1054337847
+on_mirror_stream_data payload_size: 4284on_audio_stream_data: 185, timestamp: 1054338327
+, timestamp: 5153970587
+on_audio_stream_data: 183, timestamp: 1054338807
+on_audio_stream_data: 180, timestamp: 1054339287
+on_audio_stream_data: 182, timestamp: 1054339767
+on_audio_stream_data: 220, timestamp: 1054340247
+on_mirror_stream_data payload_size: 4284, timestamp: 5297136162
+on_audio_stream_data: 180, timestamp: 1054340727
+on_audio_stream_data: 174, timestamp: 1054341207
+on_audio_stream_data: 179, timestamp: 1054341687
+on_mirror_stream_data payload_size: 4284, timestamp: 5440301737
+[INFO]audio CONTROL SYNC packet
+on_audio_stream_data: 175, timestamp: 1054342167
+on_audio_stream_data: 182, timestamp: 1054342647
+on_audio_stream_data: 181, timestamp: 1054343127
+on_mirror_stream_data payload_size: 6656, timestamp: 5726653413
+on_audio_stream_data: 178, timestamp: 1054343607
+on_audio_stream_data: 172, timestamp: 1054344087
+on_audio_stream_data: 170, timestamp: 1054344567
+on_audio_stream_data: 171, timestamp: 1054345047
+on_audio_stream_data: 171, timestamp: 1054345527
+on_audio_stream_data: 164, timestamp: 1054346007
+on_mirror_stream_data payload_size: 4566, timestamp: 5869818988
+on_audio_stream_data: 158, timestamp: 1054346487
+on_audio_stream_data: 174, timestamp: 1054346967
+on_mirror_stream_data payload_size: 4322, timestamp: 6012984563
+on_audio_stream_data: 168, timestamp: 1054347447
+on_audio_stream_data: 178, timestamp: 1054347927
+on_audio_stream_data: 166, timestamp: 1054348407
+on_mirror_stream_data payload_size: 4288, timestamp: 6156150138
+on_audio_stream_data: 169, timestamp: 1054348887
+on_audio_stream_data: 178, timestamp: 1054349367
+on_mirror_stream_data payload_size: 4288, timestamp: 6299315713
+on_audio_stream_data: 223, timestamp: 1054349847
+on_audio_stream_data: 177, timestamp: 1054350327
+on_audio_stream_data: 177, timestamp: 1054350807
+on_audio_stream_data: 179, timestamp: 1054351287
+on_audio_stream_data: 170, timestamp: 1054351767
+on_mirror_stream_data payload_size: 4288, timestamp: 6442481288
+on_audio_stream_data: 168, timestamp: on_mirror_stream_data payload_size: 4288, timestamp: 1054352247
+6585646863
+on_audio_stream_data: 174, timestamp: 1054352727
+on_mirror_stream_data payload_size: 4288, timestamp: 6728812438
+on_audio_stream_data: 174on_mirror_stream_data payload_size: 4384, timestamp: 6943567263
+, timestamp: 1054353207
+on_audio_stream_data: 183, timestamp: 1054353687
+on_audio_stream_data: 179, timestamp: 1054354167
+on_audio_stream_data: 177, timestamp: 1054354647
+on_audio_stream_data: 175, timestamp: 1054355127
+on_audio_stream_data: 173, timestamp: 1054355607
+on_audio_stream_data: 176, timestamp: 1054356087
+on_audio_stream_data: 182, timestamp: 1054356567
+on_mirror_stream_data payload_size: 4313, timestamp: 7086732838
+on_audio_stream_data: 168, timestamp: 1054357047
+on_mirror_stream_data payload_size: 4300, timestamp: 7229898413
+on_audio_stream_data: 216, timestamp: 1054357527
+on_audio_stream_data: 188, timestamp: 1054358007
+on_mirror_stream_data payload_size: 4288, timestamp: 7373063988
+on_audio_stream_data: 188, timestamp: 1054358487
+on_audio_stream_data: 179, timestamp: 1054358967
+on_audio_stream_data: 181, timestamp: 1054359447
+on_mirror_stream_data payload_size: 4288, timestamp: 7516229563
+on_audio_stream_data: 172, timestamp: 1054359927
+on_audio_stream_data: 171, timestamp: 1054360407
+on_audio_stream_data: 170, timestamp: 1054360887
+on_audio_stream_data: 180, timestamp: 1054361367
+on_audio_stream_data: 179, timestamp: 1054361847
+on_audio_stream_data: 178, timestamp: 1054362327
+on_audio_stream_data: 177, timestamp: 1054362807
+on_audio_stream_data: 179, timestamp: 1054363287
+on_mirror_stream_data payload_size: 4288, timestamp: 7659395138
+on_audio_stream_data: 166, timestamp: 1054363767
+on_audio_stream_data: 185, timestamp: 1054364247
+on_audio_stream_data: 175, timestamp: 1054364727
+on_audio_stream_data: 178, timestamp: 1054365207
+on_mirror_stream_data payload_size: 4288, timestamp: 7802560713
+on_audio_stream_data: 157, timestamp: 1054365687
+on_audio_stream_data: 174, timestamp: 1054366167
+on_audio_stream_data: 168, timestamp: 1054366647
+on_audio_stream_data: 172, timestamp: 1054367127
+on_mirror_stream_data payload_size: 4288, timestamp: 7945726289
+on_audio_stream_data: 176, timestamp: 1054367607
+on_audio_stream_data: 171, timestamp: 1054368087
+on_audio_stream_data: 195, timestamp: 1054368567
+on_mirror_stream_data payload_size: 4288, timestamp: 8088891864
+on_audio_stream_data: 196, timestamp: 1054369047
+on_mirror_stream_data payload_size: 4288, timestamp: 8232057439
+on_audio_stream_data: 188, timestamp: 1054369527
+on_audio_stream_data: 182, timestamp: 1054370007
+on_audio_stream_data: 177, timestamp: 1054370487
+on_audio_stream_data: 174, timestamp: 1054370967
+on_mirror_stream_data payload_size: 4288, timestamp: 8375223014
+on_audio_stream_data: 185, timestamp: 1054371447
+on_audio_stream_data: 183, timestamp: 1054371927
+on_mirror_stream_data payload_size: 4288, timestamp: 8518388589
+on_audio_stream_data: 174, timestamp: 1054372407
+on_audio_stream_data: 179, timestamp: 1054372887
+on_audio_stream_data: 174, timestamp: 1054373367
+on_audio_stream_data: 174, timestamp: 1054373847
+on_mirror_stream_data payload_size: 4288, timestamp: 8661554164
+on_audio_stream_data: 175, timestamp: 1054374327
+on_mirror_stream_data payload_size: 4290, timestamp: 8804719739
+on_audio_stream_data: 166, timestamp: 1054374807
+on_mirror_stream_data payload_size: 4290, timestamp: 8947885314
+on_audio_stream_data: 162, timestamp: 1054375287
+on_mirror_stream_data payload_size: 4288, timestamp: 9091050889
+on_audio_stream_data: 171, timestamp: 1054375767
+on_audio_stream_data: 162, timestamp: 1054376247
+on_audio_stream_data: 168, timestamp: 1054376727
+on_audio_stream_data: 175, timestamp: 1054377207
+on_audio_stream_data: 169, timestamp: 1054377687
+on_audio_stream_data: 165, timestamp: 1054378167
+on_audio_stream_data: 174, timestamp: 1054378647
+on_audio_stream_data: 164, timestamp: 1054379127
+on_audio_stream_data: 164, timestamp: 1054379607
+on_audio_stream_data: 169, timestamp: 1054380087
+on_mirror_stream_data payload_size: 4288, timestamp: 9234216465
+on_mirror_stream_heartbeat
+on_audio_stream_data: 177, timestamp: 1054380567
+on_mirror_stream_data payload_size: 4288, timestamp: 9377382040
+on_audio_stream_data: 179, timestamp: 1054381047
+on_mirror_stream_data payload_size: 4288, timestamp: 9520547615
+on_audio_stream_data: 171, timestamp: 1054381527
+on_mirror_stream_data payload_size: 4288, timestamp: 9663713190
+on_audio_stream_data: 159, timestamp: 1054382007
+on_audio_stream_data: 168, timestamp: 1054382487
+on_audio_stream_data: 164, timestamp: 1054382967
+on_audio_stream_data: 184, timestamp: 1054383447
+on_audio_stream_data: 171, timestamp: 1054383927
+on_audio_stream_data: 167, timestamp: 1054384407
+on_audio_stream_data: 165, timestamp: 1054384887
+on_audio_stream_data: 171, timestamp: 1054385367
+on_audio_stream_data: 192, timestamp: 1054385847
+on_mirror_stream_data payload_size: 4288, timestamp: 9806878765
+on_audio_stream_data: 170, timestamp: 1054386327
+on_audio_stream_data: 170, timestamp: 1054386807
+on_audio_stream_data: 178, timestamp: 1054387287
+on_audio_stream_data: 175, timestamp: 1054387767
+on_mirror_stream_data payload_size: 4288, timestamp: 9950044340
+[INFO]audio CONTROL SYNC packet
+on_audio_stream_data: 174, timestamp: 1054388247
+on_audio_stream_data: 179, timestamp: 1054388727
+on_mirror_stream_data payload_size: 4288, timestamp: 10093209915
+on_audio_stream_data: 177, timestamp: 1054389207
+on_audio_stream_data: 168, timestamp: 1054389687
+on_audio_stream_data: 171, timestamp: 1054390167
+on_audio_stream_data: 179, timestamp: 1054390647
+on_mirror_stream_data payload_size: 4288, timestamp: 10236375490
+on_audio_stream_data: 175, timestamp: 1054391127
+on_audio_stream_data: 182, timestamp: 1054391607
+on_audio_stream_data: 165, timestamp: 1054392087
+on_mirror_stream_data payload_size: 4288, timestamp: 10379541065
+on_audio_stream_data: 162, timestamp: 1054392567
+on_audio_stream_data: 174, timestamp: 1054393047
+on_audio_stream_data: 163, timestamp: 1054393527
+on_audio_stream_data: 158, timestamp: 1054394007
+on_mirror_stream_data payload_size: 4288, timestamp: 10522706640
+on_audio_stream_data: 162, timestamp: 1054394487
+on_audio_stream_data: 164, timestamp: 1054394967
+on_mirror_stream_data payload_size: 4288, timestamp: 10665872216
+on_audio_stream_data: 175, timestamp: 1054395447
+on_audio_stream_data: 193, timestamp: 1054395927
+on_audio_stream_data: 170, timestamp: 1054396407
+on_audio_stream_data: 172, timestamp: 1054396887
+on_mirror_stream_data payload_size: 4288, timestamp: 10809037791
+on_audio_stream_data: 168, timestamp: 1054397367
+on_audio_stream_data: 174, timestamp: 1054397847
+on_audio_stream_data: 174, timestamp: 1054398327
+on_mirror_stream_data payload_size: 4288, timestamp: 10952203366
+on_audio_stream_data: 176, timestamp: 1054398807
+on_mirror_stream_data payload_size: 4288, timestamp: 11095368941
+on_audio_stream_data: 175, timestamp: 1054399287
+on_audio_stream_data: 168, timestamp: 1054399767
+on_audio_stream_data: 168, timestamp: 1054400247
+on_audio_stream_data: 173, timestamp: 1054400727
+on_audio_stream_data: 165, timestamp: 1054401207
+on_audio_stream_data: 165, timestamp: 1054401687
+on_audio_stream_data: 186, timestamp: 1054402167
+on_audio_stream_data: 170, timestamp: 1054402647
+on_audio_stream_data: 171, timestamp: 1054403127
+on_audio_stream_data: 167, timestamp: 1054403607
+on_audio_stream_data: 171, timestamp: 1054404087
+on_audio_stream_data: 180, timestamp: 1054404567
+on_audio_stream_data: 190, timestamp: 1054405047
+on_audio_stream_data: 175, timestamp: 1054405527
+on_audio_stream_data: 178, timestamp: 1054406007
+on_audio_stream_data: 182, timestamp: 1054406487
+on_audio_stream_data: 177, timestamp: 1054406967
+on_audio_stream_data: 170, timestamp: 1054407447
+on_audio_stream_data: 172, timestamp: 1054407927
+on_audio_stream_data: 179, timestamp: 1054408407
+on_audio_stream_data: 174, timestamp: 1054408887
+on_audio_stream_data: 164, timestamp: 1054409367
+on_audio_stream_data: 163, timestamp: 1054409847
+on_audio_stream_data: 161, timestamp: 1054410327
+on_audio_stream_data: 171, timestamp: 1054410807
+on_audio_stream_data: 173, timestamp: 1054411287
+on_audio_stream_data: 166, timestamp: 1054411767
+on_audio_stream_data: 163, timestamp: 1054412247
+on_audio_stream_data: 166, timestamp: 1054412727
+on_audio_stream_data: 164, timestamp: 1054413207
+on_audio_stream_data: 167, timestamp: 1054413687
+on_audio_stream_data: 164, timestamp: 1054414167
+on_audio_stream_data: 163, timestamp: 1054414647
+on_audio_stream_data: 169, timestamp: 1054415127
+on_audio_stream_data: 166, timestamp: 1054415607
+on_audio_stream_data: 161, timestamp: 1054416087
+on_audio_stream_data: 161, timestamp: 1054416567
+[DEBUG][1723115078944]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request: TEARDOWN rtsp://192.168.31.82/5259802854977588516 RTSP/1.0
+    Header:
+        Active-Remote: 354444643
+        CSeq: 15
+        Content-Length: 84
+        Content-Type: application/x-apple-binary-plist
+        DACP-ID: 7136391BB370A579
+        User-Agent: AirPlay/425.1
+    Body:bplist00...Wstreams.......XstreamIDTtype...`.....#(*...............................,
+[DEBUG]ap_audio_stream_service (0000019131AC6630) is being destroyed
+on_audio_stream_stopped
+[DEBUG]Audio stream disconnected
+[DEBUG][1723115078944]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request: TEARDOWN rtsp://192.168.31.82/5259802854977588516 RTSP/1.0
+    Header:
+        Active-Remote: 354444643
+        CSeq: 16
+        Content-Length: 69
+        Content-Type: application/x-apple-binary-plist
+        DACP-ID: 7136391BB370A579
+        User-Agent: AirPlay/425.1
+    Body:bplist00...Wstreams.....Ttype.n......................................
+[DEBUG]ap_video_stream_session(0000019131A9A7D0) is destroying.
+on_mirror_stream_stopped
+[DEBUG]Mirroring video stream disconnected
+[DEBUG][1723115078944]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Request: TEARDOWN rtsp://192.168.31.82/5259802854977588516 RTSP/1.0
+    Header:
+        Active-Remote: 354444643
+        CSeq: 17
+        Content-Length: 42
+        Content-Type: application/x-apple-binary-plist
+        DACP-ID: 7136391BB370A579
+        User-Agent: AirPlay/425.1
+    Body:bplist00..................................
+-------------------on_session_end: 4205608363346199840
+[DEBUG]ap_airplay_connection (0000019131A98520) is being destroyed
