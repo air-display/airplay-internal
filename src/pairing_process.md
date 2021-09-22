@@ -1,6 +1,6 @@
 # Pairing Process
 
-Once the sender discovered the AirPlay server, it can get access tot he AirPlay service. No matter what function the sender wants to consume, it must establish a connection session to the AirPlay service. To establish the session, AirPlay server and sender need to verify each other. This is so called pairing process. The diagram below illustrates the interaction between sender and server during the pairing process.
+Once the sender discovers the AirPlay server, it can get access to he AirPlay service. No matter what function the sender wants to consume, it must establish a connection session to the AirPlay service. To establish the session, AirPlay server and sender need to verify each other. This is so called pairing process. The diagram below illustrates the interaction between sender and server during the pairing process.
 
 <center>
 <a href="images/pairing-interaction.png"><img src="images/pairing-interaction.png" alt></a>
@@ -20,12 +20,12 @@ Once the sender discovered the AirPlay server, it can get access tot he AirPlay 
    DACP-ID: 7136391BB370A579
    User-Agent: AirPlay/425.1
    X-Apple-ProtocolVersion: 1
-
+ 
    bplist00...Yqualifier..ZtxtAirPlay..................................."
    ```
    You may note that this is a request with GET method, but it has body data. Because it is not HTTP but RTSP protocol data.
-
-   For this request, we can ignore data the body data and response with a binary property list data including required information. For example, reply this request with the following response.
+ 
+   For this request, we can ignore the body data and response with a binary property list data including required information. For example, reply his  request with the following response.
    Response:
    ```
    Audio-Jack-Status: Connected; type=digital
@@ -36,9 +36,9 @@ Once the sender discovered the AirPlay server, it can get access tot he AirPlay 
    Content-Length: 952
    Content-Type: application/x-apple-binary-plist
    
-   bplist00.......	........"-.............#.XdeviceID\AABBCCDDEEFFXfeatures.R..._..keepAliveLowPower..   _..keepAliveSendStatsAsBody..ZmacAddress_..   AA:BB:CC:DD:EE:FFUmodelZAppleTV3,2Tname_..APS[AA:BB:CC:DD:EE:FF]]   sourceVersionV220.68[statusFlags.DRpi_.   $b08f5a79-db29-4384-b456-a4784d9e6055RpkO.   @99FD4299889422515FBD27949E4E1E21B2AF50A454499E3D4BE75A4E0F55FE63Rvv.   .\audioFormats..... ..!Ttype.`_..audioInputFormats....._..   audioOutputFormats.....^audioLatencies.$.%')+&(*,Ttype.   `YaudioTypeWdefault_..inputLatencyMicros........._..   outputLatencyMicros.........Xdisplays./.02468:<>@BD13579;=?   ACEXfeatures..Vheight..8\heightPixels..8^heightPhysical.........   Uwidth...[widthPixels...]widthPhysical.........[refreshRate#......N@   [overscanned.Xrotation.Tuuid_.$e5f7a68d-7b0f-4305-984b-974f677a150b..   .).2.?.H.M.a.c.~.............................a.d.f.s.u.|.............   ....................&./.1.H.Q.S.Z.].j.m.|............................   ...............F................
+   bplist00.......	........"-.............#.XdeviceID\AABBCCDDEEFFXfeatures.R..._..keepAliveLowPower..   _..keepAliveSendStatsAsBody..ZmacAddress_.    AA:BB:CC:DD:EE:FFUmodelZAppleTV3,2Tname_..APS[AA:BB:CC:DD:EE:FF]]   sourceVersionV220.68[statusFlags.DRpi_.    b08f5a79-db29-4384-b456-a4784d9e6055RpkO.   @99FD4299889422515FBD27949E4E1E21B2AF50A454499E3D4BE75A4E0F55FE63Rvv.   .\audioFormats..... ..!Ttype. _..audioInputFormats....._..   audioOutputFormats.....^audioLatencies.$.%')+&(*,Ttype.   `YaudioTypeWdefault_..inputLatencyMicros........._..    utputLatencyMicros.........Xdisplays./.02468:<>@BD13579;=?   ACEXfeatures..Vheight..8\heightPixels..8^heightPhysical.........   Uwidth... widthPixels...]widthPhysical.........[refreshRate#......N@   [overscanned.Xrotation.Tuuid_.$e5f7a68d-7b0f-4305-984b-974f677a150b..   .).2.?.H.M.. c.~.............................a.d.f.s.u.|.............   ....................&./.1.H.Q.S.Z.].j.m.|............................   ..............F. ...............
    ```
-
+ 
    The binary property list data in above response body can be built as follows:
    ```cpp
    auto_plist info = plist_object_dict(15,
@@ -85,19 +85,16 @@ Once the sender discovered the AirPlay server, it can get access tot he AirPlay 
     )
    );
    ```
-
-   You need to be careful with the response data, because this will impact the following behavior of the sender. If you choose to response with a very high server version, maybe you cannot handle the following request due to the latest encryption algorithm.
-
+ 
+   You need to be careful with the response data, because this will impact the following behavior of the sender. If you choose to response with a ery  high server version, maybe you cannot handle the following request due to the latest encryption algorithm.
+ 
    This is the first request and response sample in this document, and there are some important and common rules to be noted:
-
-   >**1.The response must include *Date* item**
-
-   >**2.The response must include *Session* item with whatever hex value you want**
-
-   >**3.If the request contains *CSeq*, then the response must include the same *CSeq* and value**
-
-   >**4.Include *Audio-Jack-Status: Connected; type=digital* for all responses except RECORD and SET_PARAMETER requests**
-
+ 
+   * **The response must include *Date* item**
+   * **The response must include *Session* item with whatever hex value you want**
+   * **If the request contains *CSeq*, then the response must include the same *CSeq* and value**
+   * **Include *Audio-Jack-Status: Connected; type=digital* for all responses except RECORD and SET_PARAMETER requests**
+  
 2. The sender delivers **POST /fp-setup RTSP** request to the server
 
    Request:
@@ -114,6 +111,28 @@ Once the sender discovered the AirPlay server, it can get access tot he AirPlay 
    ```
 
    The second sender request starts the real fairplay pairing process. In this request body it is a FPLY message. All FPLY messages has the common structure:
+   ```cpp
+   // 0      7 8     15 16    23 24    31  
+   // +--------+--------+--------+--------+ 
+   // |   F    |    P   |   L    |    Y   | 
+   // +--------+--------+--------+--------+ 
+   // |MajorVer|MinorVer| Phase  |  data  |
+   // +--------+--------+--------+--------+ 
+   // |          data ...            
+   // +---------------- ...            
+
+    PACKED(struct fp_header_s {
+        uint8_t signature[4]; // Always 'FPLY'
+        uint8_t major_version;
+        uint8_t minor_version;
+        uint8_t phase;
+    });
+    typedef fp_header_s fp_header_t;
+   ```
+
+   When the server receives the fp-setup request it needs to verify the signature FPLY first. Then it needs to verify the major version, currently we process this request only if major version is 3. Next the server needs to check the phase value to perform valid operation.
+
+   If phase value is 0x01, it indicates the request message is fairplay sender public key
 
    Response:
    ```

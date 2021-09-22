@@ -14,7 +14,6 @@ The _airplay._tcp service is pointing to the backend HTTP server instance. AirPl
 |  flags | required | The server flags | "0x04" |
 
 - deviceId:
-  
   Mac address is recommended for this value and also recommend to include this value as hex string in the service name. That is to say you can publish the _airplay._tcp service with name like ***APS[AA:BB:CC:DD:EE:FF]***. (If so, please remember to name the _raop._tcp service as ***AABBCCDDEEFF@APS[AA:BB:CC:DD:EE:FF]***)
 
 - features:
