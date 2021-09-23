@@ -1,6 +1,6 @@
 # _raop._tcp
 
-The _raop_._tcp service is pointing to the backend RTSP server instance. And the fields below must be included in the published service.
+The _raop_._tcp service points to the backend RTSP server instance. And the fields below must be included in the published service.
 
 | Field  | Required  | Description  | Sample Value  |
 |---|---|--------------------------------------------|---|

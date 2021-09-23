@@ -6,6 +6,10 @@ Since mDNS is not a standard component of all operating systems and it needs to 
 
 For macOS and iOS, there is no need to install any dependencies to publish services through mDNS, because Apple implemented Bonjour service in both macOS and iOS and exposed APIs for leveraging the capacity. For detailed information please refer to <a href="https://developer.apple.com/documentation/foundation/bonjour" target="_blank">NSNetService</a>
 
+   > ⚠️ **NSNetService is deprecated now and will be removed from macOS 12, the alternative API can be found in <a href="https://developer.apple.com/documentation/network/network_functions">Network Framework</a>**
+
+
+
 ## Windows
 
 For Windows system, <a href="https://developer.apple.com/download/more/?=Bonjour%20SDK%20for%20Windows">Bonjour SDK for Windows</a> is required at both compiling stage and runtime.

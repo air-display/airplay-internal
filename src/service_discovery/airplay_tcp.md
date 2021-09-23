@@ -1,6 +1,6 @@
 # _airplay._tcp
 
-The _airplay._tcp service is pointing to the backend HTTP server instance. AirPlay server must implement this service and publish it with required information. The required fields are as follows:
+The _airplay._tcp service points to the backend HTTP server instance. AirPlay server must implement this service and publish it with required information. The required fields are as follows:
 
 | Field  | Required  | Description  | Sample Value  |
 |---|---|--------------------------------------------|---|

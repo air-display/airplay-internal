@@ -47,9 +47,9 @@ To ensure the senders could discover the AirPlay server, two service must be pub
 
    if you break this rule, the sender will never discover your AirPlay server.
 
-3. Besides the above information, some more information are still required to make the server work. Please continue on the following subsections.
+3. Besides the above, some more information are still required to make the server work. Please continue on the following subsections.
 
-If all services was published successfully and correctly, it should look like the picture below. (you can use service browser to check whether your service is published correctly or not)
+If all services are published successfully and correctly, it will look like the picture below. (you can use service browser to check whether your service was published correctly or not)
 
 <center>
 <a href="images/service-browser.png"><img src="images/service-browser.png" alt></a>
