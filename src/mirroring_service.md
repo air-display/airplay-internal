@@ -49,7 +49,7 @@ We will not talk about pairing process again, please refer to the previous conte
     }
     ```
 
-    The sever needs to store the *eiv* and *ekey* for initializing the AES crypto module, and then launches a time syncing client with the sender IP and *timingPort*. The time syncing client is actually a TCP client. The details implementation of the time syncing client will be discussed in the following sections.
+    The sever needs to store the *eiv* and *ekey* for initializing the AES crypto module, and then launches a time syncing client with the sender IP and *timingPort*. The time syncing client is actually a TCP client. The detailed implementation of the time syncing client will be discussed in the following sections.
 
     **Response**
     ```
@@ -418,8 +418,19 @@ We will not talk about pairing process again, please refer to the previous conte
     
 ---
 
-After the flush request, the session moves into media data transfer state. The sender will push the audio/video data to the server, and also the sender will deliver feedback request periodically with 2 seconds intervale.
-    Media Data Transfer
+After the flush request, the session moves into media data transfer state. The sender will push the audio/video data to the server, and also the sender will deliver feedback request periodically with 2 seconds interval.
+
+\>>>>>>>>>>>>>>>> Media Data Transfer >>>>>>>>>>>>>>>>
+
+\<<<<<<<<<<<<<<<<   Media   Feedback  <<<<<<<<<<<<<<<<
+
+\>>>>>>>>>>>>>>>> Media Data Transfer >>>>>>>>>>>>>>>>
+
+\<<<<<<<<<<<<<<<<   Media   Feedback  <<<<<<<<<<<<<<<<
+
+\>>>>>>>>>>>>>>>> Media Data Transfer >>>>>>>>>>>>>>>>
+
+\<<<<<<<<<<<<<<<<   Media   Feedback  <<<<<<<<<<<<<<<<
 
 The sender delivers **POST /feedback RTSP/1.0** request to server
 
