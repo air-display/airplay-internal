@@ -1,0 +1,491 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Media Cast Service - AirPlay Internal And Implementation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="overall_architecture.html"><strong aria-hidden="true">1.</strong> Overall Architecture</a></li><li class="chapter-item expanded "><a href="service_discovery.html"><strong aria-hidden="true">2.</strong> Service Discovery</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="service_discovery/airplay_tcp.html"><strong aria-hidden="true">2.1.</strong> _airplay._tcp</a></li><li class="chapter-item expanded "><a href="service_discovery/raop_tcp.html"><strong aria-hidden="true">2.2.</strong> _raop._tcp</a></li><li class="chapter-item expanded "><a href="service_discovery/implementation_guides.html"><strong aria-hidden="true">2.3.</strong> Implementation guides</a></li></ol></li><li class="chapter-item expanded "><a href="pairing_process.html"><strong aria-hidden="true">3.</strong> Pairing Process</a></li><li class="chapter-item expanded "><a href="mirroring_service.html"><strong aria-hidden="true">4.</strong> Mirroring Service</a></li><li class="chapter-item expanded "><a href="media_cast_service.html" class="active"><strong aria-hidden="true">5.</strong> Media Cast Service</a></li><li class="chapter-item expanded "><a href="utilities.html"><strong aria-hidden="true">6.</strong> Utilities</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">AirPlay Internal And Implementation</h1>
+
+                    <div class="right-buttons">
+                        <a href="https://github.com/tishion/airplay-internal" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="media-cast-service"><a class="header" href="#media-cast-service">Media Cast Service</a></h1>
+<center>
+<a href="images/media-cast-service.png"><img src="images/media-cast-service.png" alt></a>
+<br/>
+<em>Media Cast Service Interaction Flow</em>
+</center>
+<pre><code>AP Server is starting....
+[DEBUG]ap_airplay_connection (000002BE85E99AE0) is being created
+[DEBUG]Session (000002BE85E99AE0) is waiting
+[DEBUG]AP service running on 57619
+[DEBUG]Session (000002BE85EA6680) is waiting
+[DEBUG]Media service running on 57620
+AP Server started....
+[DEBUG]Session (000002BE85E99AE0) accepted and started
+[DEBUG]ap_airplay_connection (000002BE85EB0890) is being created
+[DEBUG]Session (000002BE85EB0890) is waiting
+[DEBUG][3017313721056]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: GET /info RTSP/1.0
+    Header:
+        Active-Remote: 4002970562
+        CSeq: 0
+        Content-Length: 70
+        Content-Type: application/x-apple-binary-plist
+        DACP-ID: 481EC7990FC1C1C0
+        User-Agent: AirPlay/425.1
+        X-Apple-ProtocolVersion: 1
+    Body:bplist00?Yqualifier?ZtxtAirPlay                            &quot;
+[DEBUG][3017313721056]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: POST /fp-setup RTSP/1.0
+    Header:
+        Active-Remote: 4002970562
+        CSeq: 1
+        Content-Length: 16
+        Content-Type: application/octet-stream
+        DACP-ID: 481EC7990FC1C1C0
+        User-Agent: AirPlay/425.1
+        X-Apple-ET: 32
+    Body:FPLY     ?
+[DEBUG][3017313721056]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: POST /fp-setup RTSP/1.0
+    Header:
+        Active-Remote: 4002970562
+        CSeq: 2
+        Content-Length: 164
+        Content-Type: application/octet-stream
+        DACP-ID: 481EC7990FC1C1C0
+        User-Agent: AirPlay/425.1
+        X-Apple-ET: 32
+    Body:FPLY    ??湗攇婢祭&gt;.]惧輳貗戱泑 瑕艏?C瞠耛D赕|x?茆?N夥笐袌p垿纐e裆颚?YB硠 犣欆傋?G迷&quot;?B帤纀瑴滆?2-w頯
+渘悄?h  瀣i檳廀4?咪?
+蘒JG栰烒留??
+[DEBUG][3017313721056]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: SETUP rtsp://192.168.31.82/14135727865383177962 RTSP/1.0
+    Header:
+        Active-Remote: 4002970562
+        CSeq: 3
+        Content-Length: 499
+        Content-Type: application/x-apple-binary-plist
+        DACP-ID: 481EC7990FC1C1C0
+        User-Agent: AirPlay/425.1
+    Body:bplist00?	
+
+RetSeiv^timingProtocol[sessionUUIDVosName^osBuildVersion]sourceVersionZtimingPortYosVersionTekeyXdeviceIDUmodelTnameZmacAddress O鑭┟i突n?~覵NTP_$C42C3199-69C1-4EEA-B457-1C782563B496XMac OS XV19H524U425.1菡W10.15.7OHFPLY    &lt;    玱錄籞輖&lt;~王仴珕   /??y?茅@蒲沥f繠&quot;I?{oJ'燞_88:66:5A:15:D7:E1^MacBookPro16,1_SHEENTIAN-MBP00_88:66:5A:15:D7:E1  % ( , ; G N ] k v € ? ? ? ? ? ? ? ? ? ? ? ? ?Pds?                           ?
+###################on_mirror_session_begin: 3610747345494973152
+[DEBUG][3017313721056]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: GET /info RTSP/1.0
+    Header:
+        Active-Remote: 4002970562
+        CSeq: 4
+        DACP-ID: 481EC7990FC1C1C0
+        User-Agent: AirPlay/425.1
+        X-Apple-ProtocolVersion: 1
+    Body:&lt;EMPTY&gt;
+[DEBUG][3017313721056]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: GET_PARAMETER rtsp://192.168.31.82/14135727865383177962 RTSP/1.0
+    Header:
+        Active-Remote: 4002970562
+        CSeq: 5
+        Content-Length: 8
+        Content-Type: text/parameters
+        DACP-ID: 481EC7990FC1C1C0
+        User-Agent: AirPlay/425.1
+    Body:volume
+
+
+[DEBUG][3017313721056]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: RECORD rtsp://192.168.31.82/14135727865383177962 RTSP/1.0
+    Header:
+        Active-Remote: 4002970562
+        CSeq: 6
+        DACP-ID: 481EC7990FC1C1C0
+        User-Agent: AirPlay/425.1
+    Body:&lt;EMPTY&gt;
+[DEBUG]Timing query packet sent successfully
+[DEBUG]Timing reply packet received successfully
+[DEBUG]Session (000002BE85EB0890) accepted and started
+[DEBUG]ap_airplay_connection (000002BE85EC6010) is being created
+[DEBUG]Session (000002BE85EC6010) is waiting
+[DEBUG][3017313814672]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: POST /pair-setup RTSP/1.0
+    Header:
+        Content-Length: 32
+        Content-Type: application/octet-stream
+        User-Agent: AirPlay/425.1
+        X-Apple-Device-ID: 0x88665a15d7e1
+        X-Apple-Session-ID: 00b2c4a9-42eb-48c3-b580-b12b83582578
+    Body:c欀?榫*?@鎉嶵寂+=?è倹??
+[DEBUG][3017313814672]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: POST /pair-verify RTSP/1.0
+    Header:
+        Content-Length: 68
+        Content-Type: application/octet-stream
+        User-Agent: AirPlay/425.1
+        X-Apple-Device-ID: 0x88665a15d7e1
+        X-Apple-PD: 1
+        X-Apple-Session-ID: 00b2c4a9-42eb-48c3-b580-b12b83582578
+    Body:   $i$? o鶂ET颂Gx?獲娹颫??c欀?榫*?@鎉嶵寂+=?è倹??
+[DEBUG][3017313814672]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: POST /pair-verify RTSP/1.0
+    Header:
+        Content-Length: 68
+        Content-Type: application/octet-stream
+        User-Agent: AirPlay/425.1
+        X-Apple-Device-ID: 0x88665a15d7e1
+        X-Apple-PD: 1
+        X-Apple-Session-ID: 00b2c4a9-42eb-48c3-b580-b12b83582578
+    Body:    v闈?Mq+Pd9aq呩2?
+[妺（瞓渀3N?串翷哰g}コh9麈x^j*|偰鍭H蛁t甞vO
+[DEBUG][3017313814672]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: GET /server-info HTTP/1.1
+    Header:
+        Content-Length: 0
+        User-Agent: AirPlay/425.1
+        X-Apple-Client-Name: SHEENTIAN-MBP00
+        X-Apple-Device-ID: 0x88665a15d7e1
+        X-Apple-Session-ID: 00b2c4a9-42eb-48c3-b580-b12b83582578
+        X-Apple-VV: 16777472
+    Body:&lt;EMPTY&gt;
++++++++++++++++++++on_video_session_begin: 3610808750642497680
+[DEBUG]Session (000002BE85EC6010) accepted and started
+[DEBUG]ap_airplay_connection (000002BE85ECD6C0) is being created
+[DEBUG]Session (000002BE85ECD6C0) is waiting
+[DEBUG][3017313902608]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: POST /pair-setup RTSP/1.0
+    Header:
+        Content-Length: 32
+        Content-Type: application/octet-stream
+        User-Agent: AirPlay/425.1
+        X-Apple-Device-ID: 0x88665a15d7e1
+        X-Apple-Session-ID: 00b2c4a9-42eb-48c3-b580-b12b83582578
+    Body:c欀?榫*?@鎉嶵寂+=?è倹??
+[DEBUG][3017313902608]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: POST /pair-verify RTSP/1.0
+    Header:
+        Content-Length: 68
+        Content-Type: application/octet-stream
+        User-Agent: AirPlay/425.1
+        X-Apple-Device-ID: 0x88665a15d7e1
+        X-Apple-PD: 1
+        X-Apple-Session-ID: 00b2c4a9-42eb-48c3-b580-b12b83582578
+    Body:   侓w筄!w?od愯[R?鬆??煬/v玹c欀?榫*?@鎉嶵寂+=?è倹??
+[DEBUG][3017313902608]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: POST /pair-verify RTSP/1.0
+    Header:
+        Content-Length: 68
+        Content-Type: application/octet-stream
+        User-Agent: AirPlay/425.1
+        X-Apple-Device-ID: 0x88665a15d7e1
+        X-Apple-PD: 1
+        X-Apple-Session-ID: 00b2c4a9-42eb-48c3-b580-b12b83582578
+    Body:    `絶膩殛遁T[:屮犪葙?V殫垀&amp;?o??uqB\胲*頃郎??=鵜莻+
+鈀q:?
+[DEBUG][3017313902608]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: POST /reverse HTTP/1.1
+    Header:
+        Connection: Upgrade
+        Content-Length: 0
+        Upgrade: PTTH/1.0
+        User-Agent: AirPlay/425.1
+        X-Apple-Client-Name: SHEENTIAN-MBP00
+        X-Apple-Device-ID: 0x88665a15d7e1
+        X-Apple-Purpose: event
+        X-Apple-Session-ID: 00b2c4a9-42eb-48c3-b580-b12b83582578
+    Body:&lt;EMPTY&gt;
+[DEBUG]Reverse purpose: event
+[DEBUG]Session_id: 00b2c4a9-42eb-48c3-b580-b12b83582578
+[DEBUG][3017313814672]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: POST /play HTTP/1.1
+    Header:
+        Content-Length: 1494
+        Content-Type: application/x-apple-binary-plist
+        User-Agent: AirPlay/425.1
+        X-Apple-Device-ID: 0x88665a15d7e1
+        X-Apple-Session-ID: 00b2c4a9-42eb-48c3-b580-b12b83582578
+        X-Transmit-Date: 2021-05-03T12:02:59.118806Z
+    Body:bplist00?	
+
+ !&quot;#$%%&amp;_&quot;mightSupportStorePastisKeyRequests_playbackRestrictions_secureConnectionMsVvolume_Start-Position-Seconds_Content-LocationTuuidVinfoMsZstreamTypeYconnectMs^Start-PositionYmediaTypeVauthMsYbonjourMs_referenceRestrictions_SenderMACAddressUmodelZpostAuthMs^clientBundleID^clientProcName^osBuildVersionTrate	  #??      #        _Xhttps://manifest.googlevideo.com/api/manifest/hls_variant/file/index.m3u8?expire=1620064831&amp;ei=3-WPYJvhOOGkz7sPh_-TwAE&amp;ip=103.136.221.130&amp;id=5qap5aO4i9A.0&amp;source=yt_live_broadcast&amp;requiressl=yes&amp;tx=24005204&amp;txs=24005203%2C24005204%2C24005205%2C24005206%2C24005207%2C24005208%2C24005209&amp;hfr=1&amp;playlist_duration=30&amp;manifest_duration=30&amp;maudio=1&amp;vprv=1&amp;go=1&amp;nvgoi=1&amp;keepalive=yes&amp;fexp=24001373%2C24007246&amp;dover=11&amp;itag=0&amp;playlist_type=DVR&amp;sparams=expire%2Cei%2Cip%2Cid%2Csource%2Crequiressl%2Ctx%2Ctxs%2Chfr%2Cplaylist_duration%2Cmanifest_duration%2Cmaudio%2Cvprv%2Cgo%2Citag%2Cplaylist_type&amp;sig=AOq0QJ8wRgIhAIoAFQbuzykYfyjo5N5X9mcCXXwZJUAae_Venz8KiOSGAiEAr0I6JeYZK9F8wZ7Xfuwz-UsS77lrsrbNWkq75GJhJgQ%3D&amp;cpn=XDkzpOf3vwm-hik9&amp;ibw=161600000&amp;c=WEB&amp;cver=2.20210429.07.00&amp;ptk=youtube_single&amp;oid=Kmxl2Gtmc3HFCPsrnEUTjA&amp;ptchn=SJ4gkVC6NrvII8umztf0Ow&amp;pltype=contentlive_$715DDAD0-E479-4A79-95AA-178B08505350+蟉streaming_88:66:5A:15:D7:E1^MacBookPro16,1_com.apple.WebKit.WebContentV19H524  7 \ s ? ? ? ? ? ? ? ? ? ? ?17BQ`otuwy??? 4Ca             '              h
+[DEBUG]{
+    mightSupportStorePastisKeyRequests: Unknown Type, 
+    playbackRestrictions: 0, 
+    secureConnectionMs: 0, 
+    volume: 1, 
+    Start-Position-Seconds: 0, 
+    Content-Location: https://manifest.googlevideo.com/api/manifest/hls_variant/file/index.m3u8?expire=1620064831&amp;ei=3-WPYJvhOOGkz7sPh_-TwAE&amp;ip=103.136.221.130&amp;id=5qap5aO4i9A.0&amp;source=yt_live_broadcast&amp;requiressl=yes&amp;tx=24005204&amp;txs=24005203%2C24005204%2C24005205%2C24005206%2C24005207%2C24005208%2C24005209&amp;hfr=1&amp;playlist_duration=30&amp;manifest_duration=30&amp;maudio=1&amp;vprv=1&amp;go=1&amp;nvgoi=1&amp;keepalive=yes&amp;fexp=24001373%2C24007246&amp;dover=11&amp;itag=0&amp;playlist_type=DVR&amp;sparams=expire%2Cei%2Cip%2Cid%2Csource%2Crequiressl%2Ctx%2Ctxs%2Chfr%2Cplaylist_duration%2Cmanifest_duration%2Cmaudio%2Cvprv%2Cgo%2Citag%2Cplaylist_type&amp;sig=AOq0QJ8wRgIhAIoAFQbuzykYfyjo5N5X9mcCXXwZJUAae_Venz8KiOSGAiEAr0I6JeYZK9F8wZ7Xfuwz-UsS77lrsrbNWkq75GJhJgQ%3D&amp;cpn=XDkzpOf3vwm-hik9&amp;ibw=161600000&amp;c=WEB&amp;cver=2.20210429.07.00&amp;ptk=youtube_single&amp;oid=Kmxl2Gtmc3HFCPsrnEUTjA&amp;ptchn=SJ4gkVC6NrvII8umztf0Ow&amp;pltype=contentlive, 
+    uuid: 715DDAD0-E479-4A79-95AA-178B08505350, 
+    infoMs: 43, 
+    streamType: 1, 
+    connectMs: 207, 
+    Start-Position: 0, 
+    mediaType: streaming, 
+    authMs: 0, 
+    bonjourMs: 0, 
+    referenceRestrictions: 3, 
+    SenderMACAddress: 88:66:5A:15:D7:E1, 
+    model: MacBookPro16,1, 
+    postAuthMs: 0, 
+    clientBundleID: com.apple.WebKit.WebContent, 
+    clientProcName: com.apple.WebKit.WebContent, 
+    osBuildVersion: 19H524, 
+    rate: 0, 
+}
+on_video_play: https://manifest.googlevideo.com/api/manifest/hls_variant/file/index.m3u8?expire=1620064831&amp;ei=3-WPYJvhOOGkz7sPh_-TwAE&amp;ip=103.136.221.130&amp;id=5qap5aO4i9A.0&amp;source=yt_live_broadcast&amp;requiressl=yes&amp;tx=24005204&amp;txs=24005203%2C24005204%2C24005205%2C24005206%2C24005207%2C24005208%2C24005209&amp;hfr=1&amp;playlist_duration=30&amp;manifest_duration=30&amp;maudio=1&amp;vprv=1&amp;go=1&amp;nvgoi=1&amp;keepalive=yes&amp;fexp=24001373%2C24007246&amp;dover=11&amp;itag=0&amp;playlist_type=DVR&amp;sparams=expire%2Cei%2Cip%2Cid%2Csource%2Crequiressl%2Ctx%2Ctxs%2Chfr%2Cplaylist_duration%2Cmanifest_duration%2Cmaudio%2Cvprv%2Cgo%2Citag%2Cplaylist_type&amp;sig=AOq0QJ8wRgIhAIoAFQbuzykYfyjo5N5X9mcCXXwZJUAae_Venz8KiOSGAiEAr0I6JeYZK9F8wZ7Xfuwz-UsS77lrsrbNWkq75GJhJgQ%3D&amp;cpn=XDkzpOf3vwm-hik9&amp;ibw=161600000&amp;c=WEB&amp;cver=2.20210429.07.00&amp;ptk=youtube_single&amp;oid=Kmxl2Gtmc3HFCPsrnEUTjA&amp;ptchn=SJ4gkVC6NrvII8umztf0Ow&amp;pltype=contentlive, session: 3610808750642497680
+[DEBUG][3017313814672]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: POST /scrub?position=3649.994629 HTTP/1.1
+    Header:
+        Content-Length: 90
+        Content-Type: application/x-apple-binary-plist
+        User-Agent: AirPlay/425.1
+        X-Apple-Device-ID: 0x88665a15d7e1
+        X-Apple-Session-ID: 00b2c4a9-42eb-48c3-b580-b12b83582578
+    Body:bplist00?Tuuid_$715DDAD0-E479-4A79-95AA-178B08505350                            7
+on_video_scrub: 3.64999e+06
+[DEBUG][3017313814672]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: PUT /setProperty?actionAtItemEnd HTTP/1.1
+    Header:
+        Content-Length: 54
+        Content-Type: application/x-apple-binary-plist
+        User-Agent: AirPlay/425.1
+        X-Apple-Device-ID: 0x88665a15d7e1
+        X-Apple-Session-ID: 00b2c4a9-42eb-48c3-b580-b12b83582578
+    Body:bplist00?Uvalue                            
+[DEBUG]actionAtItemEnd value 1
+[DEBUG][3017313814672]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: POST /rate?value=0.000000 HTTP/1.1
+    Header:
+        Content-Length: 0
+        User-Agent: AirPlay/425.1
+        X-Apple-Device-ID: 0x88665a15d7e1
+        X-Apple-Session-ID: 00b2c4a9-42eb-48c3-b580-b12b83582578
+    Body:&lt;EMPTY&gt;
+on_video_rate: 0
+[DEBUG][3017313814672]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: PUT /setProperty?forwardEndTime HTTP/1.1
+    Header:
+        Content-Length: 96
+        Content-Type: application/x-apple-binary-plist
+        User-Agent: AirPlay/425.1
+        X-Apple-Device-ID: 0x88665a15d7e1
+        X-Apple-Session-ID: 00b2c4a9-42eb-48c3-b580-b12b83582578
+    Body:bplist00?Uvalue?UflagsUvalueUepochYtimescale  &amp;,6                            8
+[DEBUG][3017313814672]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: PUT /setProperty?reverseEndTime HTTP/1.1
+    Header:
+        Content-Length: 96
+        Content-Type: application/x-apple-binary-plist
+        User-Agent: AirPlay/425.1
+        X-Apple-Device-ID: 0x88665a15d7e1
+        X-Apple-Session-ID: 00b2c4a9-42eb-48c3-b580-b12b83582578
+    Body:bplist00?Uvalue?UflagsUvalueUepochYtimescale  &amp;,6                            8
+on_acquire_playback_info: 
+on_acquire_playback_info: 
+on_acquire_playback_info: 
+[DEBUG][3017313814672]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: POST /rate?value=1.000000 HTTP/1.1
+    Header:
+        Content-Length: 0
+        User-Agent: AirPlay/425.1
+        X-Apple-Device-ID: 0x88665a15d7e1
+        X-Apple-Session-ID: 00b2c4a9-42eb-48c3-b580-b12b83582578
+    Body:&lt;EMPTY&gt;
+on_video_rate: 1
+on_acquire_playback_info: 
+on_acquire_playback_info: 
+on_acquire_playback_info: 
+on_acquire_playback_info: 
+on_acquire_playback_info: 
+on_acquire_playback_info: 
+on_acquire_playback_info: 
+on_acquire_playback_info: 
+-------------------on_session_end: 3610808750642497680
+[DEBUG]ap_airplay_connection (000002BE85EB0890) is being destroyed
+[DEBUG]ap_airplay_connection (000002BE85EC6010) is being destroyed
+[DEBUG][3017313721056]&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 
+    Request: TEARDOWN rtsp://192.168.31.82/14135727865383177962 RTSP/1.0
+    Header:
+        Active-Remote: 4002970562
+        CSeq: 12
+        Content-Length: 42
+        Content-Type: application/x-apple-binary-plist
+        DACP-ID: 481EC7990FC1C1C0
+        User-Agent: AirPlay/425.1
+    Body:bplist00?                            	
+-------------------on_session_end: 3610747345494973152
+[DEBUG]ap_airplay_connection (000002BE85E99AE0) is being destroyed
+[DEBUG]ap_airplay_connection (000002BE85ECD6C0) is being destroyed
+
+</code></pre>
+<p>original connection: c -&gt; s
+reverse -&gt; insert current connection to event connection manager </p>
+<p>new connection: c -&gt; s
+post play -&gt; get reversed connection -&gt; send fcup request   recored primary uri
+post action -&gt; unhandledURLResponse -&gt; process media data and store   return primary uri</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="mirroring_service.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="utilities.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="mirroring_service.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="utilities.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

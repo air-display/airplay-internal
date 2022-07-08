@@ -1,0 +1,345 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Pairing Process - AirPlay Internal And Implementation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="overall_architecture.html"><strong aria-hidden="true">1.</strong> Overall Architecture</a></li><li class="chapter-item expanded "><a href="service_discovery.html"><strong aria-hidden="true">2.</strong> Service Discovery</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="service_discovery/airplay_tcp.html"><strong aria-hidden="true">2.1.</strong> _airplay._tcp</a></li><li class="chapter-item expanded "><a href="service_discovery/raop_tcp.html"><strong aria-hidden="true">2.2.</strong> _raop._tcp</a></li><li class="chapter-item expanded "><a href="service_discovery/implementation_guides.html"><strong aria-hidden="true">2.3.</strong> Implementation guides</a></li></ol></li><li class="chapter-item expanded "><a href="pairing_process.html" class="active"><strong aria-hidden="true">3.</strong> Pairing Process</a></li><li class="chapter-item expanded "><a href="mirroring_service.html"><strong aria-hidden="true">4.</strong> Mirroring Service</a></li><li class="chapter-item expanded "><a href="media_cast_service.html"><strong aria-hidden="true">5.</strong> Media Cast Service</a></li><li class="chapter-item expanded "><a href="utilities.html"><strong aria-hidden="true">6.</strong> Utilities</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                    </div>
+
+                    <h1 class="menu-title">AirPlay Internal And Implementation</h1>
+
+                    <div class="right-buttons">
+                        <a href="https://github.com/tishion/airplay-internal" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="pairing-process"><a class="header" href="#pairing-process">Pairing Process</a></h1>
+<p>Once the sender discovers the AirPlay server, it can get access to he AirPlay service. No matter what function the sender wants to consume, it must establish a connection session to the AirPlay service. To establish the connection session, AirPlay server and sender need to verify each other. This is so called pairing process. The diagram below illustrates the interaction between sender and server during the pairing process.</p>
+<center>
+<a href="images/pairing-interaction.png"><img src="images/pairing-interaction.png" alt></a>
+<br/>
+<em>Pairing Process Interaction Flow</em>
+</center>
+<ol>
+<li>
+<p>The sender delivers <strong>GET /info RTSP</strong> request to the server</p>
+<p><strong>Request:</strong></p>
+<pre><code>GET /info RTSP/1.0
+Active-Remote: 354444643
+CSeq: 0
+Content-Length: 70
+Content-Type: application/x-apple-binary-plist
+DACP-ID: 7136391BB370A579
+User-Agent: AirPlay/425.1
+X-Apple-ProtocolVersion: 1
+
+bplist00...Yqualifier..ZtxtAirPlay...................................&quot;
+</code></pre>
+<p>You may note that this is a request with GET method, but it has body data. Because it is not HTTP but RTSP protocol data.</p>
+<p>For this request, we can ignore the body data and response with a binary property list data including required information. For example, reply his  request with the following response.</p>
+<p><strong>Response:</strong></p>
+<pre><code>Audio-Jack-Status: Connected; type=digital
+CSeq: 0
+Date: Wed May  5 02:31:29 2021 GMT
+Server: AirTunes/220.68
+Session: CAFEBABE
+Content-Length: 952
+Content-Type: application/x-apple-binary-plist
+
+bplist00.......	........&quot;-.............#.XdeviceID\AABBCCDDEEFFXfeatures.R..._..keepAliveLowPower..   _..keepAliveSendStatsAsBody..ZmacAddress_.    AA:BB:CC:DD:EE:FFUmodelZAppleTV3,2Tname_..APS[AA:BB:CC:DD:EE:FF]]   sourceVersionV220.68[statusFlags.DRpi_.    b08f5a79-db29-4384-b456-a4784d9e6055RpkO.   @99FD4299889422515FBD27949E4E1E21B2AF50A454499E3D4BE75A4E0F55FE63Rvv.   .\audioFormats..... ..!Ttype. _..audioInputFormats....._..   audioOutputFormats.....^audioLatencies.$.%')+&amp;(*,Ttype.   `YaudioTypeWdefault_..inputLatencyMicros........._..    utputLatencyMicros.........Xdisplays./.02468:&lt;&gt;@BD13579;=?   ACEXfeatures..Vheight..8\heightPixels..8^heightPhysical.........   Uwidth... widthPixels...]widthPhysical.........[refreshRate#......N@   [overscanned.Xrotation.Tuuid_.$e5f7a68d-7b0f-4305-984b-974f677a150b..   .).2.?.H.M.. c.~.............................a.d.f.s.u.|.............   ....................&amp;./.1.H.Q.S.Z.].j.m.|............................   ..............F. ...............
+</code></pre>
+<p>The binary property list data in the response body above can be built as follows:</p>
+<pre><code class="language-cpp">auto_plist info = plist_object_dict(15,
+    &quot;deviceID&quot;, plist_object_string(config_-&gt;deviceID().c_str()),
+    &quot;features&quot;, plist_object_integer(config_-&gt;features()),
+    &quot;keepAliveLowPower&quot;, plist_object_integer(1), 
+    &quot;keepAliveSendStatsAsBody&quot;, plist_object_integer(1), 
+    &quot;macAddress&quot;, plist_object_string(config_-&gt;macAddress().c_str()), 
+    &quot;model&quot;, plist_object_string(config_-&gt;model().c_str()), 
+    &quot;name&quot;, plist_object_string(config_-&gt;name().c_str()), 
+    &quot;sourceVersion&quot;, plist_object_string(config_-&gt;serverVersion().c_str()), 
+    &quot;statusFlags&quot;, plist_object_integer(config_-&gt;statusFlag()), 
+    &quot;pi&quot;, plist_object_string(config_-&gt;pi().c_str()), 
+    &quot;pk&quot;, plist_object_data((uint8_t *)config_-&gt;pk().c_str(), (uint32_t)config_-&gt;pk().length()),
+    &quot;vv&quot;, plist_object_integer(config_-&gt;vv()), 
+    &quot;audioFormats&quot;,
+    plist_object_array(1,
+        plist_object_dict(3, 
+            &quot;type&quot;, plist_object_integer(96), 
+            &quot;audioInputFormats&quot;, plist_object_integer(0x01000000),
+            &quot;audioOutputFormats&quot;, plist_object_integer(0x01000000))),
+    &quot;audioLatencies&quot;, plist_object_array(1,
+        plist_object_dict(4, 
+            &quot;type&quot;, plist_object_integer(96), 
+            &quot;audioType&quot;, plist_object_string(&quot;default&quot;),
+            &quot;inputLatencyMicros&quot;, plist_object_integer(0),
+            &quot;outputLatencyMicros&quot;, plist_object_integer(0)
+        )
+    ),
+    &quot;displays&quot;, plist_object_array(1,
+        plist_object_dict(11,
+            &quot;features&quot;, plist_object_integer(14),
+            &quot;height&quot;, plist_object_integer(config_-&gt;display().height()), 
+            &quot;heightPixels&quot;, plist_object_integer(config_-&gt;display().height()),
+            &quot;heightPhysical&quot;, plist_object_integer(0), 
+            &quot;width&quot;, plist_object_integer(config_-&gt;display().width()), 
+            &quot;widthPixels&quot;, plist_object_integer(config_-&gt;display().width()), 
+            &quot;widthPhysical&quot;, plist_object_integer(0), 
+            &quot;refreshRate&quot;, plist_object_real(config_-&gt;display().refreshRate()),
+            &quot;overscanned&quot;, plist_object_true(), 
+            &quot;rotation&quot;, plist_object_true(), 
+            &quot;uuid&quot;, plist_object_string(config_-&gt;display().uuid().c_str())
+        )
+    )
+);
+</code></pre>
+<p>You need to be careful with the response data, because this will impact the following behavior of the sender. If you choose to response with a very high server version, maybe you cannot handle the subsequent requests due to the latest encryption algorithm.</p>
+<p>This is the first request and response sample in this document, and there are some important and common rules to be noted:</p>
+<ul>
+<li><em>The response must include <strong>Date</strong> item</em></li>
+<li><em>The response must include <strong>Session</strong> item with whatever hex value you want, but do not change it during one session</em></li>
+<li><em>If the request contains <strong>CSeq</strong>, then the response must include the same <strong>CSeq</strong> and value</em></li>
+<li><em>Include <strong>Audio-Jack-Status: Connected; type=digital</strong> for all responses except RECORD and SET_PARAMETER requests</em></li>
+</ul>
+</li>
+<li>
+<p>The sender delivers <strong>POST /fp-setup RTSP</strong> request to the server</p>
+<p><strong>Request:</strong></p>
+<pre><code>POST /fp-setup RTSP/1.0
+X-Apple-ET: 32
+Content-Length: 16
+Content-Type: application/octet-stream
+CSeq: 1
+DACP-ID: 7136391BB370A579
+Active-Remote: 354444643
+User-Agent: AirPlay/425.1   
+FPLY............
+</code></pre>
+<p>The second request from sender starts the real fairplay pairing process. In this request body it is a FPLY message. All FPLY messages has the common structure:</p>
+<pre><code class="language-cpp">// 0      7 8     15 16    23 24    31  
+// +--------+--------+--------+--------+ 
+// |   F    |    P   |   L    |    Y   | 
+// +--------+--------+--------+--------+ 
+// |MajorVer|MinorVer| Phase  |  data  |
+// +--------+--------+--------+--------+ 
+// |         ... data ...              |
+// +-----------------------------------+
+// |              ...                  |
+// +-----------------------------------+
+
+    PACKED(struct fp_header_s {
+        uint8_t signature[4]; // Always 'FPLY'
+        uint8_t major_version;
+        uint8_t minor_version;
+        uint8_t phase;
+    });
+    typedef fp_header_s fp_header_t;
+</code></pre>
+<p>When the server receives the fp-setup request it needs to verify the signature FPLY first. Then it needs to verify the major version, currently we process this request only if major version is 3. Next the server needs to check the phase value to perform valid operation.</p>
+<p>The <em>phase</em> field in this request is 0x01, it indicates the sender is query the fairplay mode key for current session. The <em>mode</em> value is in the request body with byte offset 14, that is req.body[14]. In response to this request, the server needs to send a public key or something similar to the sender according to the mode. The response content is 142 bytes.</p>
+<p><strong>Response:</strong></p>
+<pre><code>RTSP/1.0 200 OK
+Audio-Jack-Status: Connected; type=digital
+CSeq: 1
+Date: Wed May  5 02:31:29 2021 GMT
+Server: AirTunes/220.68
+Session: CAFEBABE
+Content-Length: 142
+Content-Type: application/octet-stream
+
+FPLY............?..%!..1*.....#+cv...p.&quot;...'7.......-...I...e...{...f=!...e.&gt;......	Z.|=.%I	..1..9..44..B.:........mJt;F.   .d.D..U...U..I.......
+</code></pre>
+</li>
+<li>
+<p>The sender delivers <strong>POST /fp-setup RTSP</strong> request to the server</p>
+<p><strong>Request:</strong></p>
+<pre><code>POST /fp-setup RTSP/1.0
+X-Apple-ET: 32
+Content-Length: 164
+Content-Type: application/octet-stream
+CSeq: 2
+DACP-ID: 7136391BB370A579
+Active-Remote: 354444643
+User-Agent: AirPlay/425.1
+
+FPLY.............qyn......s.].3}.PS.........v..a&amp;&amp;...Eb..K.k+V.....I..........;.I..omR...._Q.~.k&lt;....nz6.   ' 2.....I..f{.W.	.........e.y.2.dFR....xR4s..r.N..'...d.dB.
+</code></pre>
+<p>The <em>phase</em> field in this request is 0x03, it indicates this request contains the fairplay key message. The key message is 164 bytes. The sever needs to keep this key message and in the following interaction this key message will be used to decoding the client AES key.</p>
+<p>For this request, the server needs to reply a 32 bytes message to the sender. The first 12 bytes is fixed value we called fairplay header, and the remaining 20 bytes is just taken from the request body from offset 144 with length 20, that is req.body[144:20].</p>
+<p><strong>Response:</strong></p>
+<pre><code>RTSP/1.0 200 OK
+Audio-Jack-Status: Connected; type=digital
+CSeq: 2
+Date: Wed May  5 02:31:29 2021 GMT
+Server: AirTunes/220.68
+Session: CAFEBABE
+Content-Length: 32
+Content-Type: application/octet-stream
+
+FPLY........xR4s..r.N..'...d.dB.
+</code></pre>
+</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="service_discovery/implementation_guides.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="mirroring_service.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="service_discovery/implementation_guides.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="mirroring_service.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
